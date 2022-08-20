@@ -1,6 +1,7 @@
 <template>
   <SignIn v-if="signIn" />
   <SignUp v-else />
+  <button @click="signIn = !signIn">Cambiar</button>
 </template>
 
 <script>
