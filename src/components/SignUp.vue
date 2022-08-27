@@ -33,6 +33,7 @@
                   placeholder="Email address"
                 />
               </div>
+              <br>
               <div>
                 <label for="password" class="sr-only">Password</label>
                 <input
@@ -58,6 +59,11 @@
               Sign up
             </button>
           </form>
+          <!-- <div class="flex items-center space-around">
+          <div class="text-sm">
+            <button  @click="showSignUp" class="font-medium text-indigo-600 hover:text-indigo-500"> Register a new account </button>
+          </div>
+        </div> -->
         </div>
       </div>
     </div>
@@ -70,6 +76,8 @@
 import { useUserStore } from "../store/user";
 
 export default {
+  
+
   setup() {
     const user = useUserStore();
     return { user };
@@ -84,7 +92,9 @@ export default {
     async register() {
       const res = await this.user.signUp(this.email, this.password);
       console.log(res);
-    },
-  },
-};
+    }
+
+  }
+}
+
 </script>

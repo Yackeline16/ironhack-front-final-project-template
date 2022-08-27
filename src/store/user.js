@@ -37,6 +37,11 @@ export const useUserStore = defineStore("user", {
       if (user) this.user = user;
     },
     // Hacer log out
+     
+    // Hacer is logged in
+    const: isLoggedIn = ()=> {
+      return !!user.value;
+    },
     persist: {
       enabled: true,
       strategies: [

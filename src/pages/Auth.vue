@@ -1,7 +1,6 @@
 <template>
-  <SignIn v-if="signIn" />
-  <SignUp v-else />
-  <button @click="signIn = !signIn">Cambiar</button>
+  <component v-bind:is="SignInUp" @OnRegisterClicked="OnRegisterClickedHandler"/>
+
 </template>
 
 <script>
@@ -10,16 +9,28 @@ import SignUp from "../components/SignUp.vue";
 
 
 export default {
+  data() {
+    return {
+      SignInUp: SignIn
+    }
+  },
+
   components: {
     SignIn,
-    SignUp
-    
-},
-data() {
-  return {
-    signIn: false
-  }
-}
-};
-</script>
+    SignUp,
+  },
 
+  methods: {
+    showSignUp(){
+      this.SignInUp = SignUp;
+    },
+
+    OnRegisterClickedHandler(){
+      this.showSignUp();
+    }
+  }
+
+
+}
+
+</script>
