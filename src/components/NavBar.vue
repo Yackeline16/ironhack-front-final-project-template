@@ -77,7 +77,7 @@
           <div class="flex-shrink-0 flex items-center">
             <img
               class="block lg:hidden h-10 w-auto"
-              src="/src/assets/Sense títol.png"
+              src="/src/assets/logo_200x200.png"
               alt="Workflow"
             />
             <img
@@ -161,10 +161,9 @@
 </template>
  
  <script>
- import { useUserStore } from "../store/user"
+import { useUserStore } from "../store/user";
 
 export default {
- 
   setup() {
     const user = useUserStore();
     return { user };
@@ -175,17 +174,13 @@ export default {
       password: "",
     };
   },
-
- methods: {
-   signOut() {
-      console.log('esta funcionando');
+  methods: {
+    async signOut() {
+      await this.user.signOut(this.email, this.password);
       this.$router.push("/auth");
     },
-    
-  }
-  }
-
- 
+  },
+};
 </script>
  
  <style>

@@ -29,7 +29,7 @@ export default {
       this.showSignUp();
     }
   }
-
+//  Hacer un botton de return to log in o al refrescar log in
 
 }
 

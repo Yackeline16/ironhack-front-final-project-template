@@ -97,8 +97,8 @@
       "
     >
       <li x-for="task in tasks">
-        <!-- <a
-          :href="https://yoojcyovmojcnonnedqz.supabase.co"
+        <div
+          
           class="
             hover:bg-blue-500 hover:ring-blue-500 hover:shadow-md
             group
@@ -122,42 +122,23 @@
             <div>
               <dt class="sr-only">Title</dt>
               <dd class="group-hover:text-white font-semibold text-slate-900">
-                {task.title}
+                
               </dd>
             </div>
             <div>
               <dt class="sr-only">Category</dt>
-              <dd class="group-hover:text-blue-200">{task.category}</dd>
+              <dd class="group-hover:text-blue-200"></dd>
             </div>
             <div
               class="col-start-2 row-start-1 row-end-3 sm:mt-4 lg:mt-0 xl:mt-4"
             >
-              <dt class="sr-only">Users</dt>
-              <dd
-                x-for="user in tasks.users"
-                class="
-                  flex
-                  justify-end
-                  sm:justify-start
-                  lg:justify-end
-                  xl:justify-start
-                  -space-x-1.5
-                "
-              >
-                <img
-                  :src="user.avatar"
-                  :alt="user.name"
-                  class="w-6 h-6 rounded-full bg-slate-100 ring-2 ring-white"
-                  loading="lazy"
-                />
-              </dd>
+           
             </div>
           </dl>
-        </a> -->
+        </div>
       </li>
       <li class="flex">
-        <a
-          href="/new"
+        <input
           class="
             hover:border-blue-500
             hover:border-solid
@@ -189,7 +170,7 @@
             />
           </svg>
           New Task
-        </a>
+        
       </li>
     </ul>
   </section>
@@ -199,7 +180,8 @@
       bg-white
       rounded-lg
       shadow
-      md:flex md:items-center md:justify-between md:p-6
+      md:flex md:items-center md:justify-center
+       md:p-6
       dark:bg-gray-800
     "
   >
@@ -215,6 +197,7 @@ import NavBar from "../components/NavBar.vue";
 
 export default {
   components: { NavBar },
+
 
 }
 </script>
