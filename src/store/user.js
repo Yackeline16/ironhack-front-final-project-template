@@ -20,6 +20,7 @@ export const useUserStore = defineStore("user", {
           password: password,
         });
         if (error) throw error;
+        alert("This is obviously not working")
       if (user) this.user = user;
 
       } catch(error) {
@@ -37,11 +38,11 @@ export const useUserStore = defineStore("user", {
       if (user) this.user = user;
     },
     // Hacer log out
-     
-    // Hacer is logged in
-    const: isLoggedIn = ()=> {
-      return !!user.value;
-    },
+     async signOut(){
+      let {error}= await supabase.auth.signOut()
+      if (error) throw error
+     },
+    
     persist: {
       enabled: true,
       strategies: [

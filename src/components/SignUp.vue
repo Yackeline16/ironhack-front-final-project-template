@@ -92,6 +92,7 @@ export default {
     async register() {
       const res = await this.user.signUp(this.email, this.password);
       console.log(res);
+      this.$router.push("/");
     }
 
   }

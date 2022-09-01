@@ -1,73 +1,193 @@
  <template>
-    <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
-        <div class="container flex flex-wrap justify-between items-center mx-auto">
-            <a href="#" class="flex items-center">
-                <img src="../assets/logo_200x200.png" class="h-20 sm:h-20" alt="logo">
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">HeroHack</span>
-            </a>
-            <div class="flex items-center md:order-2">
-                <button type="button"
-                    class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                    id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
-                    data-dropdown-placement="bottom">
-                    <span class="sr-only">Open user menu</span>
-                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo">
-                </button>
-                <!-- Dropdown menu -->
-                <div class="z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 block"
-                    id="user-dropdown"
-                    style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(589px, 82px);"
-                    data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
-                    <div class="py-3 px-4">
-                        <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                        <span
-                            class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
-                    </div>
-                    <ul class="py-1" aria-labelledby="user-menu-button">
-                        <li>
-                            <a href="#"
-                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
-                                out</a>
-                        </li>
-                    </ul>
-                </div>
-                <button data-collapse-toggle="mobile-menu-2" type="button"
-                    class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                    aria-controls="mobile-menu-2" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">
-                <ul
-                    class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                    <li>
-                        <a href="#"
-                            class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                            aria-current="page">Home</a>
-                    </li>
-                </ul>
-            </div>
+  <nav class="bg-gray-800">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-between h-16">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <button
+            type="button"
+            class="
+              inline-flex
+              items-center
+              justify-center
+              p-2
+              rounded-md
+              text-gray-400
+              hover:text-white hover:bg-gray-700
+              focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white
+            "
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <!--
+            Icon when menu is closed.
+
+            Heroicon name: outline/bars-3
+
+            Menu open: "hidden", Menu closed: "block"
+          -->
+            <svg
+              class="block h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+            <!--
+            Icon when menu is open.
+
+            Heroicon name: outline/x-mark
+
+            Menu open: "block", Menu closed: "hidden"
+          -->
+            <svg
+              class="hidden h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
         </div>
-    </nav>
+        <div
+          class="
+            flex-1 flex
+            items-center
+            justify-center
+            sm:items-stretch sm:justify-start
+          "
+        >
+          <div class="flex-shrink-0 flex items-center">
+            <img
+              class="block lg:hidden h-10 w-auto"
+              src="/src/assets/Sense títol.png"
+              alt="Workflow"
+            />
+            <img
+              class="hidden lg:block h-8 w-auto"
+              src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=500"
+              alt="Workflow"
+            />
+          </div>
+          <div class="hidden sm:block sm:ml-6">
+            <div class="flex space-x-4">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+              <a
+                href="#"
+                class="
+                  bg-gray-900
+                  text-white
+                  px-3
+                  py-2
+                  rounded-md
+                  text-sm
+                  font-medium
+                "
+                aria-current="page"
+                >Dashboard</a
+              >
+            </div>
+          </div>
+        </div>
+        <button
+          @click="signOut"
+          type="button"
+          class="
+            py-2.5
+            px-5
+            mr-2
+            mb-2
+            text-sm
+            font-medium
+            text-gray-900
+            focus:outline-none
+            bg-white
+            rounded-full
+            border border-gray-200
+            hover:bg-gray-100 hover:text-blue-700
+            focus:z-10 focus:ring-4 focus:ring-gray-200
+            dark:focus:ring-gray-700
+            dark:bg-gray-800
+            dark:text-gray-400
+            dark:border-gray-600
+            dark:hover:text-white
+            dark:hover:bg-gray-700
+          "
+        >
+          Log out
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="sm:hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+        <a
+          href="#"
+          class="
+            bg-gray-900
+            text-white
+            block
+            px-3
+            py-2
+            rounded-md
+            text-base
+            font-medium
+          "
+          aria-current="page"
+          >Dashboard</a
+        >
+      </div>
+    </div>
+  </nav>
 </template>
  
  <script>
-export default {
-   
+ import { useUserStore } from "../store/user"
 
-}
+export default {
+ 
+  setup() {
+    const user = useUserStore();
+    return { user };
+  },
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+
+ methods: {
+   signOut() {
+      console.log('esta funcionando');
+      this.$router.push("/auth");
+    },
+    
+  }
+  }
+
+ 
 </script>
  
  <style>
- </style>
+</style>
  
