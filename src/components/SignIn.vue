@@ -173,6 +173,8 @@ export default {
     async signIn() {
       console.log('Holaa');
       await this.user.signIn(this.email, this.password);
+
+
       this.$router.push("/");
     },
     OnRegisterClicked() {

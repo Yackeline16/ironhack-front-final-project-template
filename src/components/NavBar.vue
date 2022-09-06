@@ -76,15 +76,11 @@
         >
           <div class="flex-shrink-0 flex items-center">
             <img
-              class="block lg:hidden h-10 w-auto"
-              src="/src/assets/logo_200x200.png"
+              class="block  h-10 w-auto"
+              src="../assets/logo_200x200.png"
               alt="Workflow"
             />
-            <img
-              class="hidden lg:block h-8 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=500"
-              alt="Workflow"
-            />
+            
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">

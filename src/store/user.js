@@ -5,37 +5,48 @@ import { supabase } from "../supabase.js";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
-    user: null,
+    user: null
   }),
 
   actions: {
     async fetchUser() {
-      const user = await supabase.auth.user();
+      const user = supabase.auth.user();
       this.user = user;
     },
     async signUp(email, password) {
       try {
-        const { user, error } = await supabase.auth.signUp({
+        await supabase.auth.signUp({
           email: email,
           password: password,
         });
-        if (error) throw error;
-        alert("This is obviously not working")
-      if (user) this.user = user;
 
+        if (result.error){
+          alert("This is obviously not working");
+          throw error;
+        }
+        this.user = result.user        
       } catch(error) {
         console.log(error)
-      }
-      
+      }      
     },
     // Hacer sign in
     async signIn(email, password) {
-      const { user, error } = await supabase.auth.signIn({
-        email: email,
-        password: password,
-      });
-      if (error) throw error;
-      if (user) this.user = user;
+      try {
+        const result = await supabase.auth.signIn({
+          email: email,
+          password: password,
+        });
+
+        if (result.error){
+          alert("This is obviously not working");
+          throw error;
+        }
+        this.user = result.user;
+        
+      } catch(error) {
+        console.log(error);
+        throw error;
+      }  
     },
     // Hacer log out
      async signOut(){

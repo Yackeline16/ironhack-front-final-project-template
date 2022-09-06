@@ -5,30 +5,61 @@ import { supabase } from "../supabase";
 
 export const useTaskStore = defineStore("tasks", {
   state: () => ({
-    tasks: null,
+    tasks: []
   }),
+
   actions: {
     async fetchTasks() {
-      const { data: tasks } = await supabase
+      const tasks = await supabase
         .from("tasks")
         .select("*")
-        .order("id", { ascending: false });
-      this.tasks = tasks;
+        .order("inserted_at", { ascending: false });
+      this.tasks = tasks.data;
     },
     // Hacer POST
-    // createTask (title, user_id){
-     // await supabase 
-     // .from("tasks")
-     // .insert([{title: title, id, is_complete: false}])
-    //  }
+    async createTask(title, user_id) {
+      await supabase
+        .from("tasks")
+        .insert([{ user_id: user_id, title: title, is_complete: false }]);
+        await this.fetchTasks();
+    },
 
-    // BORRAR .delete()
-    // .update()
-  
-      
- 
-    // Hacer el PUT (edit)
-    // Hacer el delete
+    // BORRAR
+    async deleteTask(taskId) {
+      await supabase.from("tasks").delete().match({ id: taskId });
+      await this.fetchTasks();
+    },
+
+    // Hacer el PUT (edit).update()
+    async editTask(taskId, title) {
+      await supabase.from("tasks").update({ title }).match({ id: taskId });
+      await this.fetchTasks();
+    },
     // Hacer el PUT (cambiar entre completada y pendiente)
+    async changeStateTask(taskId) {
+      let task = await getById(taskId);
+
+      await supabase
+        .from("task")
+        .update({ is_complete: !task.is_complete })
+        .match({ id: taskId });
+        await this.fetchTasks();
+    },
+    // Hacer el PUT (cambiar entre completada y pendiente)
+    async getById(taskId) {
+      return await supabase
+        .from("tasks")
+        .select("*")
+        .match({ id: taskId })
+        .single();
+    },
   },
+  getters: {
+    notCompleted(state) {
+      return state.tasks.filter(task => !task.is_complete);
+    },
+    completed(state) {
+      return state.tasks.filter(task => task.is_complete);
+    },
+  }
 });

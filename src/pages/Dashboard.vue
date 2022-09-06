@@ -1,7 +1,6 @@
 <template>
   <NavBar />
-  <div
-    class="
+  <div class="
       h-100
       w-full
       flex
@@ -10,16 +9,12 @@
       bg-teal-lightest
       font-sans
       max-w-
-    "
-  >
+    ">
     <div class="bg-white rounded shadow p-6 m-4 w-full lg:max-w-lg">
       <div class="mb-4">
         <h1 class="fond-bold text-grey-900">Todo List</h1>
         <div class="flex mt-4">
-          <input
-          id="todotext"
-          type="text"
-            class="
+          <input id="tasks" name="tasks" type="tasks" v-model="taskText" class="
               shadow
               appearance-none
               border
@@ -29,41 +24,36 @@
               px-3
               mr-4
               text-cyan-900
-            "
-            placeholder="Add Todo"
-          />
-          <button
-            class="
+            " placeholder="Add Todo" />
+          <button type="POST" @click="createTask" class="
               flex-no-shrink
               p-2
               border-2
               rounded
+              font-extrabold
               text-teal
               border-teal
               hover:text-white hover:bg-sky-500
-            "
-          >
-            +
+            ">
+            &#43;
           </button>
         </div>
       </div>
-      <div>
-       <TodoTask />
-      </div>
+
+      <TodoTask v-for="task in notCompleted" :key="id=task" :task="task" />
+      <DoneTask v-for="task in completed" :key="id=task" :task="task" />
     </div>
   </div>
-  <footer
-    class="
+  <footer class="
       p-4
       bg-white
       rounded-lg
       shadow
       md:flex md:items-center md:justify-center md:p-6
       dark:bg-gray-800
-    "
-  >
-    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
-      >© 2022 <a href="#" class="hover:underline">HeroHack™</a>. All Rights
+    ">
+    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="#"
+        class="hover:underline">HeroHack™</a>. All Rights
       Reserved.
     </span>
   </footer>
@@ -71,9 +61,48 @@
 
 <script>
 import NavBar from "../components/NavBar.vue";
-import TodoTask from "..components/TodoTask.vue"
+import TodoTask from "../components/TodoTask.vue";
+import DoneTask from "../components/DoneTask.vue";
+
+import { useTaskStore } from "../store/task";
+import { useUserStore } from "../store/user";
 export default {
-  components: { NavBar, TodoTask },
+  components: { NavBar, TodoTask, DoneTask },
+
+  setup() {
+    const userStore = useUserStore();
+    const taskStore = useTaskStore();
+    return { userStore, taskStore }
+  },
+
+  data() {
+    return {
+      taskText: "",
+      updater: false,
+    }
+  },
+
+  async created() {
+    await this.taskStore.fetchTasks();
+  },
+
+  methods: {
+    async createTask() {
+      console.log("estoy creando una tarea");
+
+      await this.taskStore.createTask(this.taskText, this.userStore.user.id);
+      this.$forceUpdate();
+    },
+  },
+  computed: {
+    completed() {
+      return this.taskStore.completed;
+    },
+
+    notCompleted() {
+      return this.taskStore.notCompleted;
+    }
+  },
 };
 </script>
 
