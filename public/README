@@ -1,0 +1,23 @@
+**Project title**
+
+Simple todo-list App
+
+**Project Description**
+
+An online application that allows a user to register an account and keep a simple and easy to use todo list. 
+
+The user can create, edit, delete and change the tasks. 
+
+Once the user has logged in the app  s/he can access the todo list saved in the DDBB.
+
+The app is mobile responsive and user friendly.
+
+**Used languague and frameworks**
+
+- Vue 3
+- JavaScript
+- Supabase
+- Pinia 
+- Tailwind for templates and CSS classes 
+
+
