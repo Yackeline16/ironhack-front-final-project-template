@@ -55,7 +55,7 @@ export default {
 
   methods: {
     async deleteTask() {
-      await this.taskStore.deleteTask(this.task.id);
+      await this.taskStore.deleteTask(this.task.id, this.userStore.user.id);
       this.$forceUpdate();
     },
 

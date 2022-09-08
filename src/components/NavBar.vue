@@ -158,11 +158,13 @@
  
  <script>
 import { useUserStore } from "../store/user";
+import { useTaskStore } from "../store/task";
 
 export default {
   setup() {
     const user = useUserStore();
-    return { user };
+    const taskStore = useTaskStore();
+    return { user, taskStore };
   },
   data() {
     return {
@@ -173,6 +175,7 @@ export default {
   methods: {
     async signOut() {
       await this.user.signOut(this.email, this.password);
+      // this.taskStore.tasks = [];
       this.$router.push("/auth");
     },
   },

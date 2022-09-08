@@ -24,7 +24,7 @@
               px-3
               mr-4
               text-cyan-900
-            " placeholder="Add Todo" />
+            " placeholder="Add Todo" @change="createTask" />
           <button type="POST" @click="createTask" class="
               flex-no-shrink
               p-2
@@ -83,18 +83,22 @@ export default {
   },
 
   async created() {
-    await this.taskStore.fetchTasks();
+    await this.taskStore.fetchTasks(this.userStore.user.id);
   },
 
   methods: {
     async createTask() {
       console.log("estoy creando una tarea");
 
-      await this.taskStore.createTask(this.taskText, this.userStore.user.id);
+      await this.taskStore.createTask(this.taskText,this.userStore.user.id);
+      this.taskText = "";
       this.$forceUpdate();
     },
+    unmounted(){
+      this.taskStore.tasks = [];
+    }
   },
-  computed: {
+    computed: {
     completed() {
       return this.taskStore.completed;
     },

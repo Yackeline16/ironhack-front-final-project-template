@@ -58,7 +58,7 @@ export default {
 
   methods: {
     async deleteTask() {
-      await this.taskStore.deleteTask(this.task.id);
+      await this.taskStore.deleteTask(this.task.id, this.userStore.user.id);
       this.$forceUpdate();
     },
 
@@ -68,7 +68,7 @@ export default {
     },
 
     async editTask() {
-      await this.taskStore.editTask(this.task.id, this.task.title);
+      await this.taskStore.editTask(this.task.id, this.task.title, this.userStore.user.id);
       this.$forceUpdate();
     }
   },

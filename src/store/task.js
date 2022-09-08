@@ -9,10 +9,11 @@ export const useTaskStore = defineStore("tasks", {
   }),
 
   actions: {
-    async fetchTasks() {
+    async fetchTasks(userId) {
       const tasks = await supabase
         .from("tasks")
         .select("*")
+        .match({ user_id: userId})
         .order("inserted_at", { ascending: false });
       this.tasks = tasks.data;
     },
@@ -21,19 +22,19 @@ export const useTaskStore = defineStore("tasks", {
       await supabase
         .from("tasks")
         .insert([{ user_id: user_id, title: title, is_complete: false }]);
-        await this.fetchTasks();
+        await this.fetchTasks(user_id);
     },
 
     // BORRAR
-    async deleteTask(taskId) {
+    async deleteTask(taskId, user_id) {
       await supabase.from("tasks").delete().match({ id: taskId });
-      await this.fetchTasks();
+      await this.fetchTasks(user_id);
     },
 
     // Hacer el PUT (edit).update()
-    async editTask(taskId, title) {
+    async editTask(taskId, title, user_id) {
       await supabase.from("tasks").update({ title }).match({ id: taskId });
-      await this.fetchTasks();
+      await this.fetchTasks(user_id);
     },
     // Hacer el PUT (cambiar entre completada y pendiente)
     async changeStateTask(taskId) {
@@ -43,7 +44,7 @@ export const useTaskStore = defineStore("tasks", {
         .from("tasks")
         .update({ is_complete: !task.is_complete })
         .match({ id: taskId });
-        await this.fetchTasks();
+        await this.fetchTasks(task.user_id);
     },
     // Hacer el PUT (cambiar entre completada y pendiente)
     async getById(taskId) {
@@ -53,7 +54,7 @@ export const useTaskStore = defineStore("tasks", {
         .match({ id: taskId })
         .single();
       return result.data;
-    },
+    }
   },
   getters: {
     notCompleted(state) {
