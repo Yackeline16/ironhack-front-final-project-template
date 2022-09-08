@@ -1,11 +1,8 @@
 <template>
-  <div class="flex mb-4 items-center">
-      <p class="w-full line-through text-green-600">
-        Submit Todo App Component to Tailwind Components
-      </p>
-      <button
-        @click="undoTask"
-        class="
+  <div>
+    <div class="flex mb-4 items-center">
+      <p class="w-full line-through text-green-600">{{ task.title }}</p>
+      <button @click="changeStateTask" class="
           flex-no-shrink
           p-2
           ml-4
@@ -13,16 +10,12 @@
           border-2
           rounded
           hover:text-white
-          text-gray-400
-          border-gray-400
-          hover:bg-gray-800
-        "
-      >
-      &#11148;
+          text-green-600
+          border-green-600
+          hover:bg-green-600
+        ">&#11148;
       </button>
-      <button
-      @click="edit"
-        class="
+      <button @click="deleteTask" class="
           flex-no-shrink
           p-2
           ml-2
@@ -31,19 +24,50 @@
           text-red-500
           border-red-500
           hover:text-white hover:bg-red-500
-        "
-      >
-      &#128393;
+        ">
+        &#10006;
       </button>
     </div>
+  </div>
+
 </template>
 
 <script>
-export default {
+import { useTaskStore } from "../store/task";
+import { useUserStore } from "../store/user";
 
-}
+export default {
+  props: {
+    task: Object
+  },
+  setup() {
+    const userStore = useUserStore();
+    const taskStore = useTaskStore();
+    return { userStore, taskStore }
+  },
+
+  data() {
+    return {
+      taskText: "",
+      updater: false,
+    }
+  },
+
+  methods: {
+    async deleteTask() {
+      await this.taskStore.deleteTask(this.task.id);
+      this.$forceUpdate();
+    },
+
+    async changeStateTask() {
+      await this.taskStore.changeStateTask(this.task.id);
+      this.$forceUpdate();
+    }
+  },
+
+
+};
 </script>
 
 <style>
-
 </style>

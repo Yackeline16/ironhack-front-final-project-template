@@ -1,10 +1,9 @@
 <template>
   <div>
     <div class="flex mb-4 items-center">
-      <p class="w-full text-grey-900 bg-gray-200">{{ task.title }}</p>
-      <button
-       @click="deleteTask"
-        class="
+      <!-- <p class="w-full text-grey-900 bg-gray-200">{{ task.title }}</p> -->
+      <input type="text" class="w-full text-grey-900 bg-gray-200" @change="editTask" v-model.lazy="task.title" />
+      <button changeStateTask @click="changeStateTask" class="
           flex-no-shrink
           p-2
           ml-4
@@ -17,10 +16,8 @@
           hover:bg-green-600
         ">&#10004;
       </button>
-      
-      <button
-        
-        class="
+
+      <button @click="deleteTask" class="
           flex-no-shrink
           p-2
           ml-2
@@ -29,14 +26,13 @@
           text-red-500
           border-red-500
           hover:text-white hover:bg-red-500
-        "
-      >
-      &#10006;
+        ">
+        &#10006;
       </button>
-      
+
     </div>
   </div>
-  
+
 </template>
 
 <script>
@@ -44,7 +40,7 @@ import { useTaskStore } from "../store/task";
 import { useUserStore } from "../store/user";
 
 export default {
-  props:{
+  props: {
     task: Object
   },
   setup() {
@@ -62,12 +58,22 @@ export default {
 
   methods: {
     async deleteTask() {
-      console.log("estoy borrando una tarea");
-
-      await this.taskStore.deleteTask(this.taskText, this.userStore.user.id);
+      await this.taskStore.deleteTask(this.task.id);
       this.$forceUpdate();
     },
+
+    async changeStateTask() {
+      await this.taskStore.changeStateTask(this.task.id);
+      this.$forceUpdate();
+    },
+
+    async editTask() {
+      await this.taskStore.editTask(this.task.id, this.task.title);
+      this.$forceUpdate();
+    }
   },
+
+
 };
 </script>
 
