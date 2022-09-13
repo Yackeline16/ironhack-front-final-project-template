@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-bg">
+  <div class="sign-bg h-screen">
     <div class="h-full">
       <div
         class="
@@ -51,10 +51,11 @@
                   required=""
                   class="
                     appearance-none
-                    rounded-none
+                    rounded
                     relative
                     block
                     w-full
+                    my-2 
                     px-3
                     py-2
                     border border-gray-300
@@ -70,7 +71,7 @@
                   placeholder="Email address"
                 />
               </div>
-              <br />
+           
               <div>
                 <label for="password" class="sr-only">Password</label>
                 <input
@@ -82,10 +83,11 @@
                   required=""
                   class="
                     appearance-none
-                    rounded-none
+                    rounded
                     relative
                     block
                     w-full
+                    my-2 
                     px-3
                     py-2
                     border border-gray-300

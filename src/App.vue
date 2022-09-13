@@ -1,16 +1,30 @@
 <template>
-  <section>
+   <Navbar v-show="route.path === '/'" />
    <router-view class="app-main" />
-  </section>
+   <footer class="
+      p-4
+      bg-white
+      rounded-lg
+      shadow
+      md:flex md:items-center md:justify-center md:p-6
+      dark:bg-gray-800
+    ">
+      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="#"
+          class="hover:underline">HeroHack™</a>. All Rights
+        Reserved.
+      </span>
+    </footer>
 </template>
 
 <script setup>
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import { useUserStore } from "./store/user";
+import Navbar from './components/NavBar.vue'
 
 
+const route = useRoute();
 const router = useRouter();
 const userStore = useUserStore();
 const { user } = storeToRefs(userStore);
@@ -29,7 +43,14 @@ onMounted(async () => {
   } catch (e) {
     console.log(e);
   }
+
 });
 </script>
 <style>
+ #app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+} 
 </style>

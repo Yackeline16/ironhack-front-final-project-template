@@ -12,3 +12,7 @@
     background-color: blanchedalmond;
     background-image: linear-gradient(315deg, #0d0f45 0%, #aeafc1 74%)
 }
+body {
+  height: 100vh
+
+}
