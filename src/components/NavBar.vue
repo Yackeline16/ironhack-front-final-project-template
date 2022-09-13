@@ -76,11 +76,10 @@
         >
           <div class="flex-shrink-0 flex items-center">
             <img
-              class="block  h-10 w-auto"
-              src="../assets/logo_200x200.png"
+              class="block h-10 w-auto"
+              src="../assets/Sense títol_preview_rev_1.png"
               alt="Workflow"
             />
-            
           </div>
           <div class="hidden sm:block sm:ml-6">
             <div class="flex space-x-4">
@@ -102,6 +101,7 @@
             </div>
           </div>
         </div>
+        <div class="text-sm font-medium text-white">{{ profileUser }}</div>
         <button
           @click="signOut"
           type="button"
@@ -174,12 +174,23 @@ export default {
   },
   methods: {
     async signOut() {
+      this.taskStore.tasks = [];
       await this.user.signOut(this.email, this.password);
-      // this.taskStore.tasks = [];
       this.$router.push("/auth");
     },
-  },
-};
+    getUsermail()
+{
+  let profileUser = this.email;
+   
+  return profileUser;
+}
+
+    
+    }
+  };
+
+
+
 </script>
  
  <style>

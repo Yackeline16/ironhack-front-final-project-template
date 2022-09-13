@@ -6,9 +6,9 @@
       flex
       items-center
       justify-center
-      bg-teal-lightest
+      task-bg
       font-sans
-      max-w-
+      max-w-100
     ">
     <div class="bg-white rounded shadow p-6 m-4 w-full lg:max-w-lg">
       <div class="mb-4">
@@ -94,9 +94,7 @@ export default {
       this.taskText = "";
       this.$forceUpdate();
     },
-    unmounted(){
-      this.taskStore.tasks = [];
-    }
+ 
   },
     computed: {
     completed() {

@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full bg-gray-50">
+  <div class="sign-bg">
     <div class="h-full">
       <div
         class="
@@ -140,7 +140,7 @@
           <div class="flex items-center space-around">
             <div class="text-sm">
               <button
-                class="font-medium text-indigo-600 hover:text-indigo-500"
+                class="font-medium text-white hover:text-indigo-900"
                 @click="OnRegisterClicked"
               >
                 Register a new account
