@@ -2,7 +2,7 @@
   <div>
     <div class="flex mb-4 items-center">
       <!-- <p class="w-full text-grey-900 bg-gray-200">{{ task.title }}</p> -->
-      <textarea  type="text" class="w-full row-2 text-grey-900 bg-gray-200" @change="editTask" v-model.lazy="task.title"></textarea>
+      <textarea  type="text" class="w-full row-2 text-grey-900 bg-gray-200 resize-none" @change="editTask" v-model.lazy="task.title"></textarea>
       <button changeStateTask @click="changeStateTask" class="
           flex-no-shrink
           p-2

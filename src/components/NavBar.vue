@@ -59,7 +59,7 @@
                   rounded-md
                   text-sm
                   font-medium
-                " aria-current="page">{{user.user.email}}</div>
+                " aria-current="page">{{user?.user?.email}}</div>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <component v-bind:is="SignInUp" @OnRegisterClicked="OnRegisterClickedHandler"/>
+  <component v-bind:is="SignInUp" @OnRegisterClicked="OnRegisterClickedHandler" @OnLogInClicked="OnLogInClickedHandler" />
 
 </template>
 
@@ -27,6 +27,9 @@ export default {
 
     OnRegisterClickedHandler(){
       this.showSignUp();
+    },
+    OnLogInClickedHandler(){
+      this.SignInUp = SignIn;
     }
   }
 //  Hacer un botton de return to log in o al refrescar log in
